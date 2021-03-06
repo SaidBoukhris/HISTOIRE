@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} | Histoire du monde</title>
+        {% block stylesheets %} {% endblock %}
+            <link rel="stylesheet"  type="text/css" href="{{ asset('assets/css/main.css')}}">
+            <link rel="stylesheet"  type="text/css" href="{{ asset('assets/css/nav.css')}}">
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-banner">
+                <h1>{{ controller_name }}</h1>
+                <p>Raconter et donner à comprendre l'histoire des civilisations de la préhistoire à l'an 2000 et sur toute la planéte</p>
+            </div>
+            <div class="clear"></div>
+            <nav>
+                <div class="site-title">{{ controller_name }}</div>
+                <ul class="list">
+                    <li class="dropdown"><a class="link" href="#"data-toggle="dropdown">À propos</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Les fondations</a></li>
+                            <li><a href="#">L'Homo sapiens</a></li>
+                            <li><a href="#">Au seuil de la civilisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="link" href="#"data-toggle="dropdown">Avant l'histoire</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Les fondations</a></li>
+                            <li><a href="#">L'Homo sapiens</a></li>
+                            <li><a href="#">Au seuil de la civilisation</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="link" href="#"data-toggle="dropdown">Les civilisations</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Les premières traces de la civilisation</a></li>
+                            <li><a href="#">La mésopotamie ancienne</a></li>
+                            <li><a href="#">L'Egypte ancienne</a></li>
+                            <li><a href="#">Intrus et envahisseurs</a></li>
+                            <li><a href="#">Les commencement de la civilisation en Asie du sud</a></li>
+                            <li><a href="#">Les autres mondes des Temps anciens</a></li>
+                            <li><a href="#">Transformations</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="link" href="#"data-toggle="dropdown">L'âge classique</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Rebâtir le monde ancien</a></li>
+                            <li><a href="#">Les grecs</a></li>
+                            <li><a href="#">Le monde hellénistique</a></li>
+                            <li><a href="#">Rome</a></li>
+                            <li><a href="#">Le christianisme et la transition occidentale</a></li>
+                            <li><a href="#">L'Inde classique</a></li>
+                            <li><a href="#">La Chine classic</a></li>
+                        </ul>
+                    </li>
+                <ul>
+            </nav>
+        </header>
+     
+        <section class="content">
+            {% block body %}{% endblock %}
+        </section>
+
+        {% block javascripts %} {% endblock %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script src="{{ asset('/assets/js/script.js')}}"></script>
+            <script src="{{ asset('/assets/js/nav.js')}}"></script>
+    </body>
+</html>
