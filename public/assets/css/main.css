@@ -91,25 +91,30 @@ img {
     width: 20%;
 }
 
-.cards {
+.accueil_aside .cards {
     padding: 0;
     margin: 0 auto;
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.card {
-    height: 150px;
+.accueil_aside .card {
+    display: flex;
     width: 100%;
+    flex-direction: column;
     overflow: hidden;
     position: relative;
     cursor: pointer;
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.199);
 }
 
 .card_img {
     display: flex;
     align-items: center;
-    height: 100%;
+    height: 150px;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -149,10 +154,26 @@ img {
     background-color: #39b9b3;
 }
 
-.page_les_articles .card {
-    border: 1px solid #39b9b267;
+.page_les_articles .cards {
     display: flex;
     background-color: #ffffff;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.page_les_articles .card {
+    display: flex;
+    background-color: #ffffff;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px 2px rgba(12, 35, 138, 0.199);
 }
 
 .page_les_articles .card_title {
@@ -166,15 +187,18 @@ img {
 
 .page_les_articles .card_img {
     margin: 0 auto;
-    width: 50%;
+    width: 100%;
     max-width: 1200px;
     background-size: cover;
     transition: all .5s;
 }
 
 .page_les_articles .card_body {
-    padding: 0;
-    margin: 0 2.8rem;
+    z-index: 1;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: .5rem;
+    margin: 0;
 }
 
 @media only screen and (max-width: 960px) {
