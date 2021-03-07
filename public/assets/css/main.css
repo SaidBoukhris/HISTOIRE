@@ -62,7 +62,7 @@ img {
 }
 
 
-/* content */
+/* CONTENT */
 
 .content {
     background-color: var(--white);
@@ -72,12 +72,15 @@ img {
     max-width: 100%;
 }
 
-.article {
+
+/* ACCUEIL */
+
+.accueil {
     float: left;
     width: 720px;
 }
 
-.aside {
+.accueil_aside {
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -139,6 +142,41 @@ img {
     padding: .5rem;
 }
 
+
+/* LES ARTICLES */
+
+.page_les_articles {
+    background-color: #39b9b3;
+}
+
+.page_les_articles .card {
+    border: 1px solid #39b9b267;
+    display: flex;
+    background-color: #ffffff;
+}
+
+.page_les_articles .card_title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.226);
+    background-color: #17a3b89f;
+}
+
+.page_les_articles .card_img {
+    margin: 0 auto;
+    width: 50%;
+    max-width: 1200px;
+    background-size: cover;
+    transition: all .5s;
+}
+
+.page_les_articles .card_body {
+    padding: 0;
+    margin: 0 2.8rem;
+}
+
 @media only screen and (max-width: 960px) {
     .content {
         padding: 1rem 0;
@@ -155,5 +193,8 @@ img {
         float: none;
         text-align: center;
         width: 100%;
+    }
+    .page_les_articles {
+        padding: 1rem;
     }
 }
