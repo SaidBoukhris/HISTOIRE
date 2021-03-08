@@ -28,7 +28,7 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/ajouter", name="app_article_new", methods={"GET","POST"})
-     * @Route("/{id}/editer", name="app_article_edit", methods={"GET","POST"})
+     * @Route("/{id<[0-9]+>}/editer", name="app_article_edit", methods={"GET","POST"})
      */
     public function new(Article $article=null,Request $request): Response
     {
@@ -64,7 +64,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_article_show", methods={"GET"})
+     * @Route("/{id<[0-9]+>}", name="app_article_show", methods={"GET"})
      */
     public function show(Article $article): Response
     {
@@ -75,7 +75,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_article_delete", methods={"DELETE"})
+     * @Route("/{id<[0-9]+>}", name="app_article_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Article $article): Response
     {

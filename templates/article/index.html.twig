@@ -7,7 +7,7 @@
 {% for message in app.flashes('success') %}
     <div class="alert alert-success" role="alert">{{ message }}</div>
 {% endfor %}
-<h2>{{ articles|length }} articles</h2>
+<h2>{{ pluralize(articles|length, 'article') }}</h2>
 
 <article class="page_les_articles">
     <div class="cards">
