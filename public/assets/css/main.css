@@ -38,6 +38,7 @@ html {
 body {
     font-family: Lato;
     margin: 0;
+    padding: 0;
     font-size: 1rem;
     line-height: 1.5;
     color: #120f44;
@@ -70,6 +71,167 @@ img {
     padding: 1rem;
     width: 960px;
     max-width: 100%;
+}
+
+
+/* NAVBAR */
+
+
+/* main */
+
+.header {
+    z-index: 1000;
+    box-shadow: 0 0 10px 1px #353f77;
+}
+
+.header-banner {
+    background-image: url("/assets//images/carte.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header-banner h1 {
+    font-family: Pacifico;
+    background-color: var(--info);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    width: 50%;
+    margin: 2rem auto;
+    box-shadow: 0 0 10px 1px #ffffff;
+}
+
+.header-banner p {
+    background-color: #ffffff;
+    color: var(--dark);
+    padding: 0.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 0 10px 1px #000000;
+}
+
+nav {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgb(255, 255, 255);
+}
+
+nav div {
+    visibility: hidden;
+}
+
+.visible-title {
+    font-family: Pacifico;
+    background: var(--info);
+    color: var(--white);
+    font-size: 2rem;
+    padding: 1rem;
+    visibility: visible;
+    text-align: center;
+}
+
+.site-title {
+    font-family: Pacifico;
+    background: var(--info);
+    color: var(--white);
+}
+
+.list {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+}
+
+.list .list_li .link {
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--info);
+}
+
+.list_li .link {
+    margin: 0 auto;
+    padding: .2rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.list_li {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: .5rem auto;
+    gap: .5rem;
+    width: 150px;
+}
+
+.list_li a {
+    font-family: Lato;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    color: #ffffff;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+
+
+/* Dropdown */
+
+.deroulant_content {
+    visibility: hidden;
+    position: absolute;
+    background-color: var(--info);
+    max-width: 150px;
+    padding: .5rem;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    text-align: left;
+    gap: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.deroulant_content a {
+    background-color: rgb(11, 18, 59);
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    text-decoration: none;
+    display: block;
+}
+
+.deroulant_content a:hover {
+    background-color: rgba(11, 18, 59, 0.418);
+}
+
+.deroulant:hover .deroulant_content {
+    visibility: visible;
 }
 
 
@@ -143,32 +305,34 @@ img {
 }
 
 .card_body {
+    position: relative;
+    z-index: 1;
+    background-color: #ffffff;
+    width: 100%;
     text-align: left;
-    padding: .5rem;
+    padding: .2rem;
 }
 
 
 /* LES ARTICLES */
 
 .page_les_articles {
-    background-color: #39b9b3;
+    background-color: #ffffff;
 }
 
 .page_les_articles .cards {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     background-color: #ffffff;
-    padding: 0;
-    margin: 0 auto;
     width: 100%;
-    display: flex;
     gap: 0.5rem;
 }
 
 .page_les_articles .card {
+    background-color: #000000;
+    width: 300px;
     display: flex;
-    background-color: #ffffff;
-    display: flex;
-    width: 100%;
     flex-direction: column;
     overflow: hidden;
     position: relative;
@@ -201,19 +365,40 @@ img {
     margin: 0;
 }
 
+
+/* FORGOTPASSWORD */
+
+.forgotPassword_card {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.forgotPassword_card_title {
+    padding: 1rem;
+    margin: 0;
+    font-size: 1.1rem;
+    color: #ffffff;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.226);
+    background-color: #17a3b8;
+}
+
 @media only screen and (max-width: 960px) {
     .content {
         padding: 1rem 0;
     }
-    .article {
+    .accueil {
         float: none;
         margin: 0 auto;
         width: 96%;
     }
-    .article:last-of-type {
+    .accueil:last-of-type {
         margin-bottom: 3rem;
     }
-    .aside {
+    .accueil_aside {
         float: none;
         text-align: center;
         width: 100%;

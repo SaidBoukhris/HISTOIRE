@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{controller_name}}{% endblock %}
+
+{% block body %}
+<div class="forgotPassword_card">
+        <div class="forgotPassword_card_title">
+            <b>Un email contenant un lien pour réinitialisation de votre mot de passe, vient d'être envoyer. <p>Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p></b>
+            <p>Si vou n'avez pas recu d'email, vérifier dans les courrier indésirable ou  <a href="{{ path('app_forgot_password_request') }}">renvoyer un lien</a>.</p>
+        </div>
+    </div>
+</div>
+    <p>
+        
+    </p>
+    
+{% endblock %}

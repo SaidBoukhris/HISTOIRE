@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{controller_name}}{% endblock %}
+
+{% block body %}
+    <h1>{{controller_name}}</h1>
+
+    {{ form_start(resetForm) }}
+        {{ form_row(resetForm.plainPassword, {
+            label: 'Nouveau mot de passe'
+        }) }}
+        <button class="btn btn-primary">Envoyer</button>
+    {{ form_end(resetForm) }}
+{% endblock %}
