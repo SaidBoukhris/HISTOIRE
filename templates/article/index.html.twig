@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{controller_name}}{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">{{ message }}</div>
+{% endfor %}
+<h2>{{ articles|length }} articles</h2>
+
+<article class="page_les_articles">
+    <div class="cards">
+        {% for article in articles %}
+        <div class="card">
+            <div class="card_img" style="background-image: url({{asset('assets/images/carte.jpg')}});">
+                <h4 class="card_title"><b>{{ article.title }}</b></h4> 
+            </div>
+            <div class="card_body">
+                <p>{{ article.content|u.truncate(100,' ...', false) }} <a href="{{ path('app_article_show', {'id': article.id}) }}"><span>&#8594;</span></a></p>
+                <p>{{ article.likes }} j'aime | {{ article.dislikes }} j'aimes pas</p>
+                <p>
+                    {% if article.modifiedAt %}
+                        Modifié le {{ article.modifiedAt ? article.modifiedAt|date('d/m/Y à H:i:s') : ''  }}
+                    {% else %}
+                        Publié le {{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}
+                    {% endif %}
+                    | par <a href="#"><span>&commat;</span>{{ article.author }}</a>
+                </p>
+                <a href="{{ path('app_article_show', {'id': article.id}) }}">En savoir plus <span>&#8594;</span></a>
+            </div>
+        </div>
+        {% else %}
+            <p>Aucun article en ce moment
+            <a href="{{ path('app_article_new') }}">Ajouter un article <span>&#8594;</span></a></p>
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}
