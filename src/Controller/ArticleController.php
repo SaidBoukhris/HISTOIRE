@@ -54,9 +54,9 @@ class ArticleController extends AbstractController
         }
 
         return $this->render('article/formArticle.html.twig', [
-            'editMode' => $article->getId(),
             'article' => $article,
             'form' => $form->createView(),
+            'editMode' => $article->getId(),
             'edit' => 'Édition de '.$article->getTitle(),
             'create' => 'Création d\'un article',
             'controller_name' => 'Formulaire'
