@@ -28,30 +28,31 @@
 <aside class="accueil_aside">
     <h2>Les derniers articles</h2>
     <div class="cards">
-        <div class="card">
-            <div class="card_img"  style="background-image: url({{asset('assets/images/ebih-il-mesopotamie-histoire.jpg')}});">
-                <h4 class="card_title"><b>10 000 ans avant Jésus-Christ</b></h4> 
+        {% for article in articles %}
+            <div class="card">
+                <div class="card_img" style="background-image: url({{asset('assets/images/carte.jpg')}});">
+                    <h4 class="card_title"><b>{{ article.title }}</b></h4> 
+                </div>
+                <div class="card_body">
+                    <p>{{ article.content|u.truncate(100,' ...', false) }} <a href="{{ path('app_articles_show', {'slug': article.slug}) }}"><span>&#8594;</span></a></p>
+                    <p>{{ article.likes }} j'aime | {{ article.dislikes }} j'aimes pas</p>
+                    <p>
+                        {% if article.modifiedAt is not null %}
+                            Modifié le {{ article.modifiedAt ? article.modifiedAt|date('d/m/Y à H:i:s') : '' }}
+                        {% else %}
+                            Publié le {{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}
+                        {% endif %}
+                        | par <a href="#"><span>&commat;</span>{{ article.users.pseudo }}</a>
+                    </p>
+                    <a href="{{ path('app_articles_show', {'slug': article.slug}) }}">En savoir plus <span>&#8594;</span></a>
+                </div>
             </div>
-            <div class="card_body">
-            <p>Cette période de l’histoire se termine en 476 ans après Jésus-Christ lorsque l’Empire Romain chute.</p> 
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img"  style="background-image: url({{asset('assets/images/ebih-il-mesopotamie-histoire.jpg')}});">
-                <h4 class="card_title"><b>10 000 ans avant Jésus-Christ</b></h4> 
-            </div>
-            <div class="card_body">
-            <p>Cette période de l’histoire se termine en 476 ans après Jésus-Christ lorsque l’Empire Romain chute.</p> 
-            </div>
-        </div>
-        <div class="card">
-            <div class="card_img"  style="background-image: url({{asset('assets/images/ebih-il-mesopotamie-histoire.jpg')}});">
-                <h4 class="card_title"><b>10 000 ans avant Jésus-Christ</b></h4> 
-            </div>
-            <div class="card_body">
-            <p>Cette période de l’histoire se termine en 476 ans après Jésus-Christ lorsque l’Empire Romain chute.</p> 
-            </div>
-        </div>
+        {% else %}
+            <p>Aucun article en ce moment
+        {% if not app.user %}
+            <a href="{{ path('app_login') }}">Connecter vous pour ajouter un article</a> ou  <a href="{{ path('app_register') }}">créer un compte</a>
+        {% endif %}
+        {% endfor %}
     </div>
 </aside>
   

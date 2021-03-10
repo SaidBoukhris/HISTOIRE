@@ -4,72 +4,15 @@
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %} | Histoire du monde</title>
         {% block stylesheets %} {% endblock %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet"  type="text/css" href="{{ asset('assets/css/main.css')}}">
     </head>
     <body>
-        <header class="header">
-            <div class="header-banner">
-                <h1>{{ controller_name }}</h1>
-            </div>
-            <div class="clear"></div>
-            <nav>
-                <div class="site-title">{{ controller_name }}</div>
-                <ul class="list">
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_accueil')}}">À propos</a>
-                    </li>
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_article_index')}}">Les Articles</a>
-                    </li>
-                    <li class="list_li">
-                        <section class="deroulant">
-                            <p class="link">Avant l'histoire</p>
-                            <div class="deroulant_content">
-                                <a href="#">Les fondations</a>
-                                <a href="#">L'Homo sapiens</a>
-                                <a href="#">Au seuil de la civilisation</a>
-                            </div>
-                        </section> 
-                    </li>
-                    <li class="list_li">
-                        <section class="deroulant">
-                            <p class="link">Les civilisations</p>
-                            <div class="deroulant_content">
-                                <a href="#">Les premières traces de la civilisation</a>
-                                <a href="#">La mésopotamie ancienne</a>
-                                <a href="#">L'Egypte ancienne</a>
-                                <a href="#">Intrus et envahisseurs</a>
-                                <a href="#">Les commencement de la civilisation en Asie du sud</a>
-                                <a href="#">Les autres mondes des Temps anciens</a>
-                                <a href="#">Transformations</a>
-                            </div>
-                        </section> 
-                    </li>
-                    <li class="list_li">
-                        <section class="deroulant">
-                            <p class="link">L'âge classique</p>
-                            <div class="deroulant_content">
-                                <a href="#">Rebâtir le monde ancien</a>
-                                <a href="#">Les grecs</a>
-                                <a href="#">Le monde hellénistique</a>
-                                <a href="#">Rome</a>
-                                <a href="#">Le christianisme et la transition occidentale</a>
-                                <a href="#">L'Inde classique</a>
-                                <a href="#">La Chine classic</a>
-                            </div>
-                        </section> 
-                    </li>
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_login')}}">Connexion</a>
-                    </li>
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_register')}}">Inscription</a>
-                    </li>
-                <ul>
-            </nav>
-        </header>
-     
+        {{ include('partials/_nav.html.twig')}}
         <section class="content">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% endfor %}
             {% block body %}{% endblock %}
         </section>
 

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+<h1>{{ controller_name }}</h1>
+<h2>{{ pluralize(articles|length, 'article') }}</h2>
+
+<article class="page_les_articles">
+    <div class="cards">
+        {% for article in articles %}
+        <div class="card">
+            <div class="card_img" style="background-image: url({{asset('assets/images/carte.jpg')}});">
+                <h4 class="card_title"><b>{{ article.title }}</b></h4> 
+            </div>
+            <div class="card_body">
+                <a href="#">En savoir plus <span>&#8594;</span></a>
+            </div>
+        </div>
+        {% else %}
+            <p>Aucune catégorie en ce moment
+            <a href="{{ path('admin_articles_add')}}">Ajouter un article <span>&#8594;</span></a></p>
+        {% endfor %}
+    </div>
+</article>
+{% endblock %}

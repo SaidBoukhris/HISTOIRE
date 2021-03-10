@@ -14,7 +14,7 @@ final class Version20210309112130 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '#6 Add sulg field to Categories & Article, add relation between Categories/Users, Categories/Categories, Article/Categories';
+        return '#6 Add sulg field to Categories & Article, add relation between Categories/Users, Categories/Categories, Article/Categories,Article/Users';
     }
 
     public function up(Schema $schema) : void

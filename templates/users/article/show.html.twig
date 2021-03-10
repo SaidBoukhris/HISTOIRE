@@ -4,8 +4,7 @@
 
 {% block body %}
 <article class="accueil">
-    <h2>{{article.categories.name}} </h2>
-    <h3>{{ article.title }} </h3>
+    <h2>{{ article.title }} </h2>
     <p>
         {% if article.modifiedAt is not null %}
             Modifié le {{ article.modifiedAt ? article.modifiedAt|date('d/m/Y à H:i:s') : '' }}
@@ -14,18 +13,15 @@
         {% endif %}
         | par <a href="#"><span>&commat;</span>{{ article.users.pseudo }}</a>
     </p>
-    <p>{{ article.likes }} aimes | {{ article.dislikes }} n'aimes pas</p>
-    <p>{{ include('/partials/_socialBar.html.twig')}}</p>
+        
+    <p>{{ article.likes }} aimes | {{ article.dislikes }} n'aimes pas </p>
     <p>{{ article.content|raw }}</p>
 </article>
 
 <aside class="accueil_aside">
-    <a href="{{ path('app_articles_accueil') }}">Retour</a>
-
+    <a href="{{ path('app_article_index') }}">Retour</a>
         {% if article.users == app.user %}
-            <a href="{{ path('users_articles_edit', {'slug': article.slug}) }}">Modifier</a>
-        {% else %}
-
+            <a href="{{ path('admin_articles_edit', {'slug': article.slug}) }}">Modifier</a>
         {% endif %}
     <h2>Les derniers articles</h2>
     <div class="cards">

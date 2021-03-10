@@ -63,6 +63,50 @@ img {
 }
 
 
+/* ICONS */
+
+#icon-bar {
+    display: flex;
+}
+
+#icon-bar>a {
+    text-decoration: none;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    width: 20px;
+    height: 50px;
+    background: var(--white);
+    font-size: 10px;
+    transition: all .5s;
+}
+
+#icon-bar>a:hover {
+    background: rgba(0, 0, 0, 0);
+    font-size: 15px;
+}
+
+.facebook {
+    color: #1877f2;
+}
+
+.twitter {
+    color: #1da1f2;
+}
+
+.google {
+    color: #ea4335;
+}
+
+.linkedin {
+    color: #0a66c2;
+}
+
+.youtube {
+    color: #ff0000;
+}
+
+
 /* CONTENT */
 
 .content {

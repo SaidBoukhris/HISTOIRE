@@ -25,7 +25,7 @@ class AppExtension extends AbstractExtension
     public function plural(int $count,string $singular,?string $plural = null): string
     {
         $plural ??= $singular.'s';
-        $result = $count === 1 ? $singular : $plural;
+        $result = $count === 0 ? $singular : $plural;
         return "$count $result";
     }
 }

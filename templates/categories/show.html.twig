@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ categories.name }}{% endblock %}
+
+{% block body %}
+<article class="accueil">
+    <h2>{{ categories.name }} </h2>
+</article>
+
+<aside class="accueil_aside">
+    <a href="{{ path('admin_categories_accueil') }}">Retour</a>
+    <a href="{{ path('admin_categories_edit', {'id': categories.id}) }}">Modifier</a>
+    <h2>Les derniers articles</h2>
+    <div class="cards">
+        <div class="card">
+            <div class="card_img"  style="background-image: url({{asset('assets/images/ebih-il-mesopotamie-histoire.jpg')}});">
+                <h4 class="card_title"><b>10 000 ans avant Jésus-Christ</b></h4> 
+            </div>
+            <div class="card_body">
+            <p>Cette période de l’histoire se termine en 476 ans après Jésus-Christ lorsque l’Empire Romain chute.</p> 
+            </div>
+        </div>
+    </div>
+</aside>
+{% endblock %}

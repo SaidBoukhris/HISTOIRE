@@ -37,6 +37,20 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
     }
 
     // /**
+    //  * @param int $usersId
+    //  * @return array
+    //  */
+    // public function findByUsersId(int $usersId)
+    // {
+    //     return $this->createQueryBuilder('c')
+    //         ->select(['c.id', 'c.email'])
+    //         ->where('c.pseudo = :id')
+    //         ->orderBy('c.id', 'ASC')
+    //         ->setParameter('id', $usersId)
+    //         ->getQuery()
+    //         ->execute();
+    // }
+    // /**
     //  * @return Users[] Returns an array of Users objects
     //  */
     /*

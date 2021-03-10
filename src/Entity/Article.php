@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -28,16 +29,13 @@ class Article
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $author;
-
-    /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $modifiedAt;
@@ -53,6 +51,7 @@ class Article
     private $dislikes;
 
     /**
+     * @Gedmo\Slug(fields={"title"}, separator="_")
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
@@ -103,40 +102,14 @@ class Article
         return $this;
     }
 
-    public function getAuthor(): ?string
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(string $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     public function getModifiedAt(): ?\DateTimeInterface
     {
         return $this->modifiedAt;
-    }
-
-    public function setModifiedAt(?\DateTimeInterface $modifiedAt): self
-    {
-        $this->modifiedAt = $modifiedAt;
-
-        return $this;
     }
 
     public function getLikes(): ?int
@@ -166,13 +139,6 @@ class Article
     public function getSlug(): ?string
     {
         return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 
     public function getActive(): ?bool

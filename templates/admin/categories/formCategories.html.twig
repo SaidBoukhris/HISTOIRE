@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if editMode %} {{edit}} {% else %} {{create}}{% endif %}{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+    {% if editMode %}<h2>{{edit}}</h2>{% else %}<h2>{{create}}</h2>{% endif %}
+    {{ form_row(form) }}
+    <button id="submit-btn">{{ button_label ??('Enregistrer') }}</button>
+{{ form_end(form) }}
+{% endblock %}
