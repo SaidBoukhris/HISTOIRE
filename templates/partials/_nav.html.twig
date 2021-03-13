@@ -1,67 +1,78 @@
 <header class="header">
-            <div class="header-banner">
-                <h1>{{ controller_name }}</h1>
-            </div>
-            <div class="clear"></div>
-            <nav>
-                <div class="site-title">{{ controller_name }}</div>
-                <ul class="list">
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_accueil')}}">À propos</a>
-                    </li>
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_articles_accueil')}}">Les Articles</a>
-                    </li>
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_categories_index')}}">Categories</a>
-                    </li>
-                    {# <li class="list_li">
-                        <section class="deroulant">
-                            <p class="link">Avant l'histoire</p>
-                            <div class="deroulant_content">
-                                <a href="#">Les fondations</a>
-                                <a href="#">L'Homo sapiens</a>
-                                <a href="#">Au seuil de la civilisation</a>
-                            </div>
-                        </section> 
-                    </li>
-                    <li class="list_li">
-                        <section class="deroulant">
-                            <p class="link">Les civilisations</p>
-                            <div class="deroulant_content">
-                                <a href="#">Les premières traces de la civilisation</a>
-                                <a href="#">La mésopotamie ancienne</a>
-                                <a href="#">L'Egypte ancienne</a>
-                                <a href="#">Intrus et envahisseurs</a>
-                                <a href="#">Les commencement de la civilisation en Asie du sud</a>
-                                <a href="#">Les autres mondes des Temps anciens</a>
-                                <a href="#">Transformations</a>
-                            </div>
-                        </section> 
-                    </li>
-                    <li class="list_li">
-                        <section class="deroulant">
-                            <p class="link">L'âge classique</p>
-                            <div class="deroulant_content">
-                                <a href="#">Rebâtir le monde ancien</a>
-                                <a href="#">Les grecs</a>
-                                <a href="#">Le monde hellénistique</a>
-                                <a href="#">Rome</a>
-                                <a href="#">Le christianisme et la transition occidentale</a>
-                                <a href="#">L'Inde classique</a>
-                                <a href="#">La Chine classic</a>
-                            </div>
-                        </section> 
-                    </li> #}
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_login')}}">Connexion</a>
-                    </li>
-                    <li class="list_li">
-                        <a class="link" href="{{path('app_register')}}">Inscription</a>
-                    </li>
-                    <li class="list_li">
-                        <a class="link" target="_blank" href="{{asset('assets/SaidBoukhrisCV.pdf')}}">Cv</a>
-                    </li>
-                <ul>
-            </nav>
-        </header>
+{% if article.thumb is defined %}
+    <div class="header-banner"style="background-image: url({{article.thumb}});">
+        <h1>{{ controller_name }}</h1>
+    </div>
+{% else %}
+    <div class="header-banner">
+        <h1>{{ controller_name }}</h1>
+    </div>
+{% endif %}
+    <nav>
+        <p class="site-title">{{ controller_name }}</p>
+        <ul class="list">
+            <li class="list_li">
+                <a class="link" href="{{path('app_accueil')}}">À propos</a>
+            </li>
+            <li class="list_li">
+                <a class="link" href="{{path('app_articles_accueil')}}">Les Articles</a>
+            </li>
+            <li class="list_li">
+                <a class="link" href="{{path('app_categories_index')}}">Categories</a>
+            </li>
+            <li class="list_li">
+                <div class="deroulant">
+                    <div class="link">Avant l'histoire</div>
+                    <div class="deroulant_content">
+                        <a href="#">Les fondations</a>
+                        <a href="#">L'Homo sapiens</a>
+                        <a href="#">Au seuil de la civilisation</a>
+                    </div>
+                </div> 
+            </li>
+            <li class="list_li">
+                <div class="deroulant">
+                    <div class="link">Les civilisations</div>
+                    <div class="deroulant_content">
+                        <a href="#">Les premières traces de la civilisation</a>
+                        <a href="#">La mésopotamie ancienne</a>
+                        <a href="#">L'Egypte ancienne</a>
+                        <a href="#">Intrus et envahisseurs</a>
+                        <a href="#">Les commencement de la civilisation en Asie du sud</a>
+                        <a href="#">Les autres mondes des Temps anciens</a>
+                        <a href="#">Transformations</a>
+                    </div>
+                </div> 
+            </li>
+            <li class="list_li">
+                <div class="deroulant">
+                    <div class="link">L'âge classique</div>
+                    <div class="deroulant_content">
+                        <a href="#">Rebâtir le monde ancien</a>
+                        <a href="#">Les grecs</a>
+                        <a href="#">Le monde hellénistique</a>
+                        <a href="#">Rome</a>
+                        <a href="#">Le christianisme et la transition occidentale</a>
+                        <a href="#">L'Inde classique</a>
+                        <a href="#">La Chine classic</a>
+                    </div>
+                </div> 
+            </li>
+            {% if app.user %}
+            <li class="list_li">
+                <a id="account" class="link account" href="{{path('app_login')}}">{{ app.user.pseudo}} </a>
+            </li>
+            <li class="list_li">
+                <a class="link" href="{{path('app_logout')}}">Deconnexion</a>
+            </li>
+            {% else %}
+            <li class="list_li">
+                <a class="link" href="{{path('app_login')}}">Connexion</a>
+            </li>
+            <li class="list_li">
+                <a class="link" href="{{path('app_register')}}">Inscription</a>
+            </li>
+            {% endif %}
+        <ul>
+    </nav>
+</header>

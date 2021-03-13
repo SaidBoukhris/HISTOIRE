@@ -4,11 +4,11 @@ Should be equal the the height of the header
 ========================================== */
 
 $(window).scroll(function() {
-    if ($(window).scrollTop() >= 100) {
+    if ($(window).scrollTop() >= 250) {
         $("nav").addClass("fixed-header");
-        $("nav div").addClass("visible-title");
+        $("nav p").addClass("visible-title");
     } else {
         $("nav").removeClass("fixed-header");
-        $("nav div").removeClass("visible-title");
+        $("nav p").removeClass("visible-title");
     }
 });

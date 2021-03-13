@@ -7,33 +7,47 @@
 {% for message in app.flashes('success') %}
     <div class="alert alert-success" role="alert">{{ message }}</div>
 {% endfor %}
-<h2>{{ pluralize(articles|length, 'article') }}</h2>
+{# <h2>{{ pluralize(articles|length, 'article') }}</h2>
 {% if app.user %}
     <a href="{{ path('users_articles_add') }}">Ajouter un article</a>
-{% endif %}
+{% endif %} #}
 <article class="page_les_articles">
-    <div class="cards">
+    <div class="page_les_articles_cards">
         {% for article in articles %}
-            <div class="card">
-                <div class="card_img" style="background-image: url({{asset('assets/images/carte.jpg')}});">
-                    <h4 class="card_title"><b>{{ article.title }}</b></h4> 
-                </div>
-                <div class="card_body">
-                <div>{{ article.categories }}</div>
-                    <h4>{{ article.content|u.truncate(100,' ...', false) }} 
-                    <a href="{{ path('app_articles_show', {'slug': article.slug}) }}"> En savoir plus <span>&#8594;</span></a></h4>
-                    <h6>{{ article.likes }} j'aime | {{ article.dislikes }} j'aimes pas</h6>
-                    <h6>
-                        {% if article.modifiedAt is not null %}
-                            Modifié le {{ article.modifiedAt ? article.modifiedAt|date('d/m/Y à H:i:s') : '' }}
-                        {% else %}
+            <div class="page_les_articles_cards_card">
+                <a class="page_les_articles_cards_card_link_header" href="{{ path('app_articles_show', {'slug': article.slug}) }}">
+                    <div class="page_les_articles_cards_card_link_header_title">
+                        <h4 class="">{{ article.title }}</h4>
+                    </div>
+                    <div class="page_les_articles_cards_card_img" style="background-image: url({{article.thumb}});background-position: center;background-repeat: no-repeat;background-size: cover;max-width: 100%;height: 200px;"></div>
+                </a>
+                <div class="page_les_articles_cards_card_body">
+                    <div class="page_les_articles_cards_card_body_infos">
+                        <div class="page_les_articles_cards_card_body_infos_calendar">
+                            <icon class="fa fa-calendar"></icon> 
                             Publié le {{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}
-                        {% endif %}
-                        | par <a href="#"><span>&commat;</span>{{ article.users.pseudo }}</a>
-                    </h6>
-        {{ include('partials/_socialBar.html.twig')}}
+                        </div>
+                        <div class="page_les_articles_cards_card_body_infos_folder">
+                            <icon class="fa fa-folder"></icon> 
+                            Catégorie : {{ article.categories }}
+                        </div>
+                        <div class="page_les_articles_cards_card_body_infos_author">
+                            <icon class="fa fa-user"></icon> 
+                            Auteur : {{ article.users.pseudo }}
+                        </div>
+                        <div class="page_les_articles_cards_card_body_content_social">
+                            {{ include('partials/_socialBar.html.twig')}}
+                        </div>
+                    </div>
+                    <div class="page_les_articles_cards_card_body_content"> 
+                        <div class="page_les_articles_cards_card_body_content_resume">
+                        {{ article.content | u.truncate(350,' ... ',false) | raw}}
+                        </div>
+
+                    </div>
                 </div>
             </div>
+
         {% else %}
             <p>Aucun article en ce moment
         {% if not app.user %}
@@ -42,4 +56,34 @@
         {% endfor %}
     </div>
 </article>
+
+<aside class="page_les_articles_aside">
+    <div class="page_les_articles_aside_cards">
+    {% for category in categories %}
+    {% for article in category.articles %}
+            <div class="page_les_articles_aside_cards_card">
+                <div class="page_les_articles_aside_cards_card_img" style="background-image: url({{article.thumb}});">
+                    <h4 class="page_les_articles_aside_cards_card_title"><b>{{ article.title }}</b></h4> 
+                </div>
+                <div class="page_les_articles_aside_cards_card_body">
+                    <p>Dans {{ category.name }}</p>
+                    <p><a href="{{ path('app_articles_show', {'slug': article.slug}) }}">{{ article.content | u.truncate(150,' ... ',false) | raw}}Lire <span>&#8594;</span></a></p>
+                    <p>{{ article.likes }} j'aime | {{ article.dislikes }} j'aimes pas</p>
+                </div>
+            </div>
+        {% else %}
+            {#<div class="page_les_articles_aside_cards_card">
+                <div class="page_les_articles_aside_cards_card_img" style="background-image: url({{asset('assets/images/ebih-il-mesopotamie-histoire.jpg')}});">
+            <h4 class="page_les_articles_aside_cards_card_title">{{ category.name }}</h4>
+                </div>
+
+            </div>
+         {% if not app.user %}
+            <a href="{{ path('app_login') }}">Connecter vous pour ajouter un article</a> ou  <a href="{{ path('app_register') }}">créer un compte</a>
+        {% endif %} #}
+        {% endfor %}
+        {% endfor %}
+    </div>
+</aside>
+  
 {% endblock %}

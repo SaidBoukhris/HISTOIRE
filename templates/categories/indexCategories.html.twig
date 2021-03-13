@@ -3,28 +3,30 @@
 {% block title %}{{ controller_name }}{% endblock %}
 
 {% block body %}
-<h2>{{ pluralize(categories|length, 'catégorie') }}</h2>
-
-<article class="page_les_articles">
-    <div class="cards">
+{# <h2>{{ pluralize(categories|length, 'catégorie') }}</h2> #}
+<article class="page_les_categories">
+    <div class="categories_cards">
         {% for category in categories %}
-        <div class="card">
-            <div class="card_img" style="background-image: url({{asset('assets/images/carte.jpg')}});">
-                <h4 class="card_title"><b>{{ category.name }}</b></h4> 
+        <a href="{{ path('admin_categories_show', {'id': category.id}) }}">
+            <div class="categories_card">
+                <div class="categories_card_img" style="background-image: url({{asset('assets/images/carte.jpg')}});">
+                    <h4 class="categories_card_title"><b>{{ category.name }}</b></h4> 
+                </div>
+                <div class="categories_card_body">
+                    <span class="categories_card_articles_title">
+                        {% for articles in category.articles %}
+                        {{ articles.title }}
+                        {% else %}
+                            Aucune article dasn cette catégorie
+                        {% endfor %}
+                    </span> 
+                </div>
             </div>
-            <div class="card_body">
-                <p>{{ pluralize(category.articles|length, 'article') }}</p> 
-            {% for article in category.articles %}
-                <h5>{{ article.title }}</h5> 
-            {% endfor %}
-                <a href="{{ path('app_categories_show', {'slug': category.slug}) }}">En savoir plus <span>&#8594;</span></a>
-            </div>
-        </div>
         {% else %}
-            <p>Aucune catégorie en ce moment
-            <a href="{{ path('admin_categories_add') }}">Ajouter une catégorie <span>&#8594;</span></a></p>
+            <p>Aucune catégorie en ce moment<a href="{{ path('admin_categories_add') }}">
+            Ajouter une catégorie <span>&#8594;</span></a></p>
+        </a>
         {% endfor %}
     </div>
 </article>
-
 {% endblock %}

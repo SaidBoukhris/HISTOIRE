@@ -7,12 +7,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet"  type="text/css" href="{{ asset('assets/css/main.css')}}">
     </head>
-    <body>
+    
+    <body style="">
         {{ include('partials/_nav.html.twig')}}
         <section class="content">
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success" role="alert">{{ message }}</div>
-        {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
             {% block body %}{% endblock %}
         </section>
 

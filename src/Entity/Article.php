@@ -51,7 +51,7 @@ class Article
     private $dislikes;
 
     /**
-     * @Gedmo\Slug(fields={"title"}, separator="_")
+     * @Gedmo\Slug(fields={"title"}, separator="-")
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
@@ -72,6 +72,11 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $categories;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $thumb;
 
     public function getId(): ?int
     {
@@ -173,6 +178,18 @@ class Article
     public function setCategories(?Categories $categories): self
     {
         $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getThumb(): ?string
+    {
+        return $this->thumb;
+    }
+
+    public function setThumb(?string $thumb): self
+    {
+        $this->thumb = $thumb;
 
         return $this;
     }
