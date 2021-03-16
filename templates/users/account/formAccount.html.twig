@@ -1,0 +1,13 @@
+{% extends 'users/usersBase.html.twig' %}
+
+{% block usersTitle %}{{controller_name}}{% endblock %}
+
+{% block usersBody %}
+{{ form_start(formAccount) }}
+<div class="users_accueil">
+    <h2>{{controller_name}}</h2>
+    {{ form(formAccount) }}
+    <button>{{ button_label ??('Enregistrer') }}</button>
+</div>
+{{ form_end(formAccount) }}
+{% endblock %}

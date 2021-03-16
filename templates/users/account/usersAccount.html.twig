@@ -1,0 +1,43 @@
+{% extends 'users/usersBase.html.twig' %}
+
+{% block usersTitle %}{{ app.user.pseudo }}{% endblock %}
+
+{% block usersBody %}
+<div class="page_users_accueil">
+
+    <div class="page_users_accueil_card">
+        <div class="page_users_accueil_card_header">
+            <div class="page_users_accueil_card_header_infos">
+                <div class="page_users_accueil_card_header_infos_img">
+                    <img src="{{ app.user.avatar }}" alt="{{ app.user.pseudo }}">
+                    <h4>{{ controller_name }} {{ app.user.pseudo }}</h4>
+                    <p>{% include('partials/_socialBar.html.twig')%}</p>
+                </div>
+                <div class="page_users_accueil_card_header_user">
+                    <p class="page_users_accueil_card_header_user_name"><i class="fa fa-chain fa-pull-left fa-border"></i>{{ app.user.email }}</p>
+                    <p class="page_users_accueil_card_header_user_name"><i class="fa fa-quote-left fa-pull-left fa-border"></i>{{ app.user.name }} {{ app.user.firstname }}</p>
+                </div>
+            </div>
+                
+            <div class="page_users_accueil_card_header_btns">
+                <a href="{{path('users_account_edit', {'name': app.user.name})}}" class="page_users_accueil_card_header_btn">Modifier mon profil</a>
+                <a href="#" class="page_users_accueil_card_header_btn">Mot de passe</a>
+            </div>
+        </div>
+        <div class="page_users_accueil_card_body">
+            <div class="page_users_accueil_card_body_articles">
+                <div class="page_users_accueil_card_body_articles_btns">
+                    <h4 class="page_users_accueil_card_body_articles_btns_title">Mes articles ({{ pluralize(app.user.articles|length, 'article') }})</h4>
+                    <a href="{{path('users_articles_add')}}" class="page_users_accueil_card_body_articles_btns_btn">Ajouter un article</a>
+                </div>
+                    {% for articles in app.user.articles %}
+                <div class="page_users_accueil_card_body_articles_actions">
+                        <a href="{{ path('app_articles_show', {'slug': articles.slug}) }}" class="page_users_accueil_card_body_articles_link"><i class="fa fa-eye"></i> | {{ articles.title }}</a>
+                        <a href="{{ path('users_articles_edit', {'slug': articles.slug}) }}" class="page_users_accueil_card_body_articles_link"> | <i class="fa fa-pencil"></i></a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

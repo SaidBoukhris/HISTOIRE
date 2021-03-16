@@ -1,0 +1,29 @@
+<header class="header">
+{% if app.user %}
+    <div class="header-banner"style="background-image: url({{app.user.avatar}});">
+        <h1>{{ app.user.pseudo }}</h1>
+    </div>
+{# {% else %}
+    <div class="header-banner">
+        <h1>{{ users.pseudo }}</h1>
+    </div> #}
+    <nav>
+        <p class="site-title">{{ app.user.pseudo }}</p>
+        <ul class="list">
+            <li class="list_li">
+                <a class="link" href="{{path('app_accueil')}}">Accueil</a>
+            </li>
+            <li class="list_li">
+                <a class="link" href="{{path('users_articles_accueil')}}">Mes Articles</a>
+            </li>
+            
+            {# <li class="list_li">
+                <a id="account" class="link account" href="#">{{ app.user.pseudo}} </a>
+            </li> #}
+            <li class="list_li">
+                <a class="link" href="{{path('app_logout')}}">Deconnexion</a>
+            </li>
+        <ul>
+    </nav>
+{% endif %}
+</header>

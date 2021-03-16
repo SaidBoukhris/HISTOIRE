@@ -2,83 +2,56 @@
 
 namespace App\Controller\Users;
 
+use App\Entity\Users;
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Form\FormAccountType;
+use App\Repository\UsersRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
- * @Route("/users", name="users_")
+ * @Route("/users/account", name="users_account_")
  */
 class UsersController extends AbstractController
 {
     /**
-     * @Route("/articles", name="accueil")
+     * @Route("/", name="accueil")
      */
-    public function index(ArticleRepository $articles): Response
+    public function index(UsersRepository $usersRepos,ArticleRepository $articles,CategoriesRepository $categoriesRepos): Response
     {
-        return $this->render('article/index.html.twig', [
+        return $this->render('users/account/usersAccount.html.twig', [
             'articles' => $articles->findBy([],['createdAt'=> 'DESC']),
-            'controller_name' => 'Les Articles'
+            'categories' => $categoriesRepos->findAll(),
+            'users' => $usersRepos->findAll(),
+            'controller_name' => ' '
         ]);
     }
     
-    // /**
-    //  * @Route("/articles/{slug}/editer", name="edit", methods={"GET","POST"})
-    //  * @Route("/articles/ajouter", name="add", methods={"GET","POST"})
-    //  */
-    // public function formArticles(Article $articles=null, Request $request, EntityManagerInterface $em): Response
-    // {
-    //     if(!$articles){
-    //         $articles = new Article();
-    //     }
-    //     $form = $this->createForm(ArticleType::class, $articles);
-    //     $form->handleRequest($request);
+    /**
+     * @Route("/{name}/editer", name="edit")
+     */
+    public function formAccount(Request $request, EntityManagerInterface $em): Response
+    {
+        $user=$this->getUser();
+        $form = $this->createForm(FormAccountType::class, $user);
+        $form->handleRequest($request);
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $articles->setUsers($this->getUser());
-    //         $articles->setActive(false);
-    //         $em->persist($articles);
-    //         $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($user);
+            $em->flush();
 
-    //         return $this->redirectToRoute('users_articles_show', ['id' => $articles->getId()]);
-    //     }
+            $this->addFlash('success', 'Votre compte a bien été mis à jour');
+            return $this->redirectToRoute('users_account_accueil');
+        }
 
-    //     return $this->render('users/article/formArticle.html.twig', [
-    //         'article' => $articles,
-    //         'form' => $form->createView(),
-    //         'editMode' => $articles->getId(),
-    //         'edit' => 'Édition de '.$articles->getTitle(),
-    //         'create' => 'Création d\'un article',
-    //         'controller_name' => 'Formulaire'
-    //     ]);
-    // }
-
-    // /**
-    //  * @Route("/articles/{id<[0-9]+>}", name="show", methods={"GET"})
-    //  */
-    // public function show(Article $article): Response
-    // {
-    //     return $this->render('users/article/show.html.twig', [
-    //         'controller_name' => $article->getTitle(),
-    //         'article' => $article
-    //     ]);
-    // }
-
-    // /**
-    //  * @Route("/articles/{id<[0-9]+>}", name="delete", methods={"DELETE"})
-    //  */
-    // public function delete(Request $request, Article $article): Response
-    // {
-    //     if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->remove($article);
-    //         $entityManager->flush();
-    //     }
-
-    //     return $this->redirectToRoute('users_article_index');
-    // }
+        return $this->render('users/account/formAccount.html.twig', [
+            'formAccount' => $form->createView(),
+            'controller_name' => 'Édition de '.$user->getEmail()
+        ]);
+    }
 }

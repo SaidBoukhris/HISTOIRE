@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block usersTitle %}{% endblock %} | Histoire du monde</title>
+        {% block stylesheets %} {% endblock %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet"  type="text/css" href="{{ asset('assets/css/main.css')}}">
+    </head>
+    
+    <body style="">
+        {{ include('users/partials/_nav.html.twig')}}
+        <section class="content_users">
+            {# {% for message in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %} #}
+                {{ include('partials/_flash_messages.html.twig')}}
+            {% block usersBody %}{% endblock %}
+        </section>
+
+        {% block javascripts %} {% endblock %}
+          
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script src="{{ asset('/assets/js/script.js')}}"></script>
+    </body>
+</html>

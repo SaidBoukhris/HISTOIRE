@@ -1,11 +1,36 @@
-{% extends 'base.html.twig' %}
+{% extends 'users/usersBase.html.twig' %}
 
-{% block title %}{% if editMode %} {{edit}} {% else %} {{create}}{% endif %}{% endblock %}
+{% block usersTitle %}{{controller_name}}{% endblock %}
 
-{% block body %}
+{% block usersBody %}
+<h2>{% if editMode %} Modification de l'article : {{ articles.title }}{% else %} Création d'un article {% endif %}</h2>
+<p>Remplissez tous les champs ci dessous et enregister pour que votre article soit visible sur le site.</p>
+
 {{ form_start(form) }}
-    {% if editMode %}<h2>{{edit}}</h2>{% else %}<h2>{{create}}</h2>{% endif %}
-    {{ form_row(form) }}
-    <button id="submit-btn">{{ button_label ??('Enregistrer') }}</button>
+<div class="container">
+
+    <div class="row">
+        <div class="col-25"><label for="fname">Titre de l'article</label></div>
+        <div class="col-75">{{ form_widget(form.title) }}</div>
+    </div>
+
+    <div class="col-25"><label for="fname">Url de la photo</label></div>
+    <div class="row">
+        <div class="col-75">{{ form_widget(form.thumb) }}</div>
+    </div>
+
+    <div class="col-25"><label for="fname">Choisir une catégorie</label></div>
+    <div class="row">
+        <div class="col-75">{{ form_widget(form.categories) }}</div>
+    </div>
+
+    <div><label for="fname">Contenu de l'article</label></div>
+    <div class="row">
+        <div>{{ form_widget(form.content) }}</div>
+    </div>
+    <div class="row">
+        <input type="submit" value="{% if editMode %} Modifier {% else %} Enregistrer {% endif %}">
+    </div>
+</div>
 {{ form_end(form) }}
 {% endblock %}

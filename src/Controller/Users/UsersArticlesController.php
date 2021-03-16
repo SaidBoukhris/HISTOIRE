@@ -5,6 +5,7 @@ namespace App\Controller\Users;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoriesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,11 +48,12 @@ class UsersArticlesController extends AbstractController
             $entityManager->persist($articles);
             $entityManager->flush();
             $this->addFlash('success', 'Votre article a bien été enregistré');
-            return $this->redirectToRoute('app_articles_accueil');
+            return $this->redirectToRoute('users_articles_accueil');
         }
         return $this->render('users/article/formArticle.html.twig', [
             'form' => $form->createView(),
             'editMode' => $articles->getId(),
+            'articles' => $articles,
             'edit' => 'Édition de '.$articles->getTitle(),
             'create' => 'Création d\'un article',
             'controller_name' => 'Formulaire users Articles'
@@ -59,14 +61,14 @@ class UsersArticlesController extends AbstractController
     }
 
     /**
-    * @Route("/actived/{id<[0-9]+>}", name="actived")
-    */
-    public function activedArticle(Article $article, EntityManagerInterface $em): Response 
+     * @Route("/{slug}", name="show", methods={"GET"})
+     */
+    public function show(Article $article,CategoriesRepository $categories): Response
     {
-        $article->setActive(($article->getActive())?false:true);
-        $em->persist($article);
-        $em->flush();
-
-        return new Response('TRUE');
+        return $this->render('article/show.html.twig', [
+        'controller_name' => $article->getTitle(),
+            'article' => $article,
+            'categories' => $categories->findAll()
+        ]);
     }
 }
