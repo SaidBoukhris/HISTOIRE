@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}Best Youtube Video !
+{% endblock %}
+ 
+{% block body %}
+ 
+    <h2>Toutes les vidéos</h2>
+    <div class="ytrow">
+        {% for youtube in youtubes %}
+            <div class="ytcol">
+                <div class="ytcard">
+                    <a href="{{ path('youtube_video', {'id': youtube.id }) }}"><img src="{{ youtube.url|youtube_thumbnail }}" class=""></a>
+                    <div class="">
+                        <h5 class="">{{ youtube.name }}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+ 
+    <div class="ytform" id="addvideo">
+        <h2>Ajouter une vidéo</h2>
+        {{ form(form) }}
+    </div>
+ 
+    {% endblock %}

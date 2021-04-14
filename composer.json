@@ -15,6 +15,7 @@
         "friendsofsymfony/ckeditor-bundle": "^2.3",
         "helios-ag/fm-elfinder-bundle": "^10.1",
         "phpdocumentor/reflection-docblock": "^5.2",
+        "ricardofiorani/php-video-url-parser": "^1.0",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "5.2.*",
         "symfony/console": "5.2.*",
