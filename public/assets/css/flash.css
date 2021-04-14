@@ -1,0 +1,73 @@
+/* ALERT */
+
+.alert {
+    width: 50%;
+    height: 50px;
+    position: relative;
+    text-align: center;
+    padding: 0.75rem 1.25rem;
+    margin: 1rem auto;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #cfe2d3;
+    background-color: var(--success);
+}
+
+.alert-error {
+    color: #e6bfbf;
+    background-color: var(--danger);
+}
+
+.alert-info {
+    color: #bfd1e6;
+    background-color: var(--info);
+}
+
+
+/* ICONS */
+
+#icon-bar {
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    width: 100%;
+}
+
+#icon-bar>a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: rgba(255, 0, 242, 0);
+    width: 50%;
+    max-height: 100%;
+    height: 20px;
+    font-size: 10px;
+    transition: all .5s;
+}
+
+#icon-bar>a:hover {
+    font-size: 20px;
+}
+
+.facebook {
+    color: #1877f2;
+}
+
+.twitter {
+    color: #1da1f2;
+}
+
+.google {
+    color: #ea4335;
+}
+
+.linkedin {
+    color: #0a66c2;
+}
+
+.youtube {
+    color: #ff0000;
+}

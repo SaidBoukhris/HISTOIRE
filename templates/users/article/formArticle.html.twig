@@ -4,33 +4,32 @@
 
 {% block usersBody %}
 <h2>{% if editMode %} Modification de l'article : {{ articles.title }}{% else %} Création d'un article {% endif %}</h2>
-<p>Remplissez tous les champs ci dessous et enregister pour que votre article soit visible sur le site.</p>
+<p>Remplissez tous les champs ci dessous et enregister pour que votre article soit visible sur le site.</p><p>Les champs marqués d’un <strong style="color:red;">*</strong> sont obligatoires</p>
 
 {{ form_start(form) }}
 <div class="container">
+    <div>
+        <label for="fname">Titre de l'article <strong style="color:red;">*</strong></label>
+    <div>{{ form_widget(form.title) }}</div>
 
-    <div class="row">
-        <div class="col-25"><label for="fname">Titre de l'article</label></div>
-        <div class="col-75">{{ form_widget(form.title) }}</div>
+    <div><label for="fname">Contenu de l'article <strong style="color:red;">*</strong></label></div>
+    <div>{{ form_widget(form.content) }}</div>
+    
+    <div class="row_form">
+        <div class="col-75_form">
+            <label for="fname">Url de la banniére <strong style="color:red;">*</strong></label>
+            {{ form_widget(form.thumb) }}
+        </div>
+        <div class="col-25_form">
+            <label for="fname">Choisir une catégorie <strong style="color:red;">*</strong></label>
+            {{ form_widget(form.categories) }}
+        </div>
     </div>
 
-    <div class="col-25"><label for="fname">Url de la photo</label></div>
-    <div class="row">
-        <div class="col-75">{{ form_widget(form.thumb) }}</div>
-    </div>
 
-    <div class="col-25"><label for="fname">Choisir une catégorie</label></div>
-    <div class="row">
-        <div class="col-75">{{ form_widget(form.categories) }}</div>
-    </div>
 
-    <div><label for="fname">Contenu de l'article</label></div>
-    <div class="row">
-        <div>{{ form_widget(form.content) }}</div>
-    </div>
-    <div class="row">
-        <input type="submit" value="{% if editMode %} Modifier {% else %} Enregistrer {% endif %}">
-    </div>
+    <input type="submit" value="{% if editMode %} Modifier {% else %} Enregistrer {% endif %}">
+
 </div>
 {{ form_end(form) }}
 {% endblock %}

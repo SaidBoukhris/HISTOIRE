@@ -3,14 +3,18 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+<article class="leftcolumn">
+    <h2>Histoire Du Monde, c’est quoi ?</h2>
 
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success" role="alert">{{ message }}</div>
-{% endfor %}
+    <p>Un petit coin du web né de l’envie de partager…</p>
 
-<article class="accueil">
-    <h2>Histoire Du Monde</h2>
-    <p>Histoire Du Monde est destiné à toutes les personnes qui souhaitent découvrir ou redécouvrir l’Histoire. Les articles sont classés par zones géographiques, civilisations et ordre chronologique pour apporter une cohérence rationnelle entre les événements qui marquent l’Histoire. Histoire Du Monde décrit, de manière simple et efficace, l’Histoire de l’humanité à travers les siècles, de l’apparition des premiers organismes vivants sur terre à la colonisation de la planète Mars.</p>
+    <p>Des chroniques de lecture – les miennes. Et aussi celles d'articles trouvés sur internet et celles que je lis à la bibliothèque – parce que j’ai envie de savoir comment l'Histoire fait le Présent, et j’imagine que c’est pareil pour vous !</p>
+    <p>Quelques mots sur moi</p>
+   
+    <p>En 2009, j’ai quitté une vie professionnelle très (trop ?) intense et la région parisienne pour m’installer avec ma famille dans un petit village dans le sud-ouest. Depuis, j’ai vécu toutes sortes d’aventures… Beaucoup se sont déroulées au cours de randonnées à la découverte du patrimoine de cette région.</p>
+
+    <p>Histoire du Monde m’a accompagnée tout au long de ces années. J’espère que vous vous y sentirez bien. C’est parti…</p>
+
     <p>Le début de la préhistoire est marquée par l’apparition des premiers organismes vivants. Puis ce sont les premiers dinosaures et les premiers primates qui voient le jours. Ensuite apparaissent les australopithèques, dont le squelette de Lucy est découvert en 1974 en Ethiopie. Plus tard, l’homo-habilis se développe en Afrique.</p>
     <p>Il est capable de fabriquer et d’utiliser des outil. Bien après, l’homo-erectus commence à marcher complètement droit et debout dans la savane. Puis, l’homme de Neandertal voit le jour. Il commence à maîtriser le feu et à parler. Enfin, l’évolution donne vie à l’homme moderne qui colonise le monde, peint, sculpte et chasse. Il finit par se sédentariser pour écrire son histoire dans une nouvelle période historique nommée antiquité.</p>  
     <p>Histoire du Monde, ce sera également (pour très bientôt) des récits historiques fictifs sous la forme de contes… de la naissance d’Anna en Mésopotamie en 10 000 avant Jésus-Christ à son installation sur Mars avec son chat Horus.</p>
@@ -61,7 +65,7 @@
     <p>L’Antiquité débute en 10 000 ans avant Jésus-Christ lorsque les hommes commencent à cultiver des champs en Mésopotamie. Cette période de l’histoire se termine en 476 ans après Jésus-Christ lorsque l’Empire Romain chute. Les articles ci-dessous sont classés par zones géographiques, civilisations et ordre chronologique.</p>
 </article>
     
-<aside class="accueil_aside">
+<aside class="rightcolumn">
     <div class="accueil_aside_cards">
     {% for category in categories %}
         <div class="accueil_aside_cards_card">
@@ -82,16 +86,16 @@
                 </div>
             </div>
         </div>
-        {% else %}
-            {# <div class="accueil_aside_cards_card">
+        {% else %}<div class="accueil_aside_cards_card">
                 <div class="accueil_aside_cards_card_img" style="background-image: url({{asset('assets/images/ebih-il-mesopotamie-histoire.jpg')}});">
                     <h4 class="accueil_aside_cards_card_title">{{ category.name }}</h4>
                 </div>
             </div>
             {% if not app.user %}
                 <a href="{{ path('app_login') }}">Connecter vous pour ajouter un article</a> ou  <a href="{{ path('app_register') }}">créer un compte</a>
-            {% endif %} #}
+            {% endif %}
     {% endfor %}
     </div>
+
 </aside>
 {% endblock %}

@@ -1,78 +1,91 @@
-<header class="header">
-{% if article.thumb is defined %}
-    <div class="header-banner"style="background-image: url({{article.thumb}});">
-        <h1>{{ controller_name }}</h1>
-    </div>
-{% else %}
-    <div class="header-banner">
-        <h1>{{ controller_name }}</h1>
-    </div>
-{% endif %}
-    <nav>
-        <p class="site-title">{{ controller_name }}</p>
-        <ul class="list">
-            <li class="list_li">
-                <a class="link" href="{{path('app_accueil')}}">À propos</a>
-            </li>
-            <li class="list_li">
-                <a class="link" href="{{path('app_articles_accueil')}}">Les Articles</a>
-            </li>
-            <li class="list_li">
-                <a class="link" href="{{path('app_categories_index')}}">Categories</a>
-            </li>
-            <li class="list_li">
-                <div class="deroulant">
-                    <div class="link">Avant l'histoire</div>
-                    <div class="deroulant_content">
-                        <a href="#">Les fondations</a>
-                        <a href="#">L'Homo sapiens</a>
-                        <a href="#">Au seuil de la civilisation</a>
-                    </div>
-                </div> 
-            </li>
-            <li class="list_li">
-                <div class="deroulant">
-                    <div class="link">Les civilisations</div>
-                    <div class="deroulant_content">
-                        <a href="#">Les premières traces de la civilisation</a>
-                        <a href="#">La mésopotamie ancienne</a>
-                        <a href="#">L'Egypte ancienne</a>
-                        <a href="#">Intrus et envahisseurs</a>
-                        <a href="#">Les commencement de la civilisation en Asie du sud</a>
-                        <a href="#">Les autres mondes des Temps anciens</a>
-                        <a href="#">Transformations</a>
-                    </div>
-                </div> 
-            </li>
-            <li class="list_li">
-                <div class="deroulant">
-                    <div class="link">L'âge classique</div>
-                    <div class="deroulant_content">
-                        <a href="#">Rebâtir le monde ancien</a>
-                        <a href="#">Les grecs</a>
-                        <a href="#">Le monde hellénistique</a>
-                        <a href="#">Rome</a>
-                        <a href="#">Le christianisme et la transition occidentale</a>
-                        <a href="#">L'Inde classique</a>
-                        <a href="#">La Chine classic</a>
-                    </div>
-                </div> 
-            </li>
+<header id="header"class="header">
+    {% if article.thumb is defined %}
+        <div class="header-banner"style="background-image: url({{article.thumb}});">
+            <h1>{{ controller_name }}</h1>
+        </div>
+    {% else %}
+        <div class="header-banner">
+            <h1>{{ controller_name }}</h1>
+            <div id="mySidenav" class="sidenav">
             {% if app.user %}
-            <li class="list_li">
-                <a id="account" class="link account" href="{{path('users_account_accueil')}}">Mon compte</a>
-            </li>
-            <li class="list_li">
-                <a class="link" href="{{path('app_logout')}}">Deconnexion</a>
-            </li>
+                <div class="avatar">
+                    <img src="{{ app.user.avatar }}" alt="{{ app.user.pseudo }}">
+                    <span>{{ app.user.pseudo }}</span>
+                </div>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="{{path('users_account_accueil')}}">Mon compte</a>
+                <a class="link" href="{{path('users_articles_accueil')}}">Mes Articles</a>
+                <a href="{{path('app_logout')}}">Déconnexion</a>
             {% else %}
-            <li class="list_li">
-                <a class="link" href="{{path('app_login')}}">Connexion</a>
-            </li>
-            <li class="list_li">
-                <a class="link" href="{{path('app_register')}}">Inscription</a>
-            </li>
+                <a href="{{path('app_login')}}">Se connecter</a>
+                <a href="{{path('app_register')}}">S'inscrire</a>
             {% endif %}
-        <ul>
-    </nav>
+            </div>
+        </div>
+    {% endif %}
+        <nav>
+            <p class="site-title">{{ controller_name }}</p>
+            <ul class="list">
+                <li class="list_li">
+                    <a class="link" href="{{path('app_accueil')}}">À propos</a>
+                </li>
+                <li class="list_li">
+                    <a class="link" href="{{path('app_articles_accueil')}}">Les Articles</a>
+                </li>
+                <li class="list_li">
+                    <a class="link" href="{{path('app_categories_index')}}">Categories</a>
+                </li>
+                <li class="list_li">
+                    <div class="deroulant">
+                        <div class="link">Avant l'histoire</div>
+                        <div class="deroulant_content">
+                            <a href="{{path('app_accueil')}}">Les fondations</a>
+                            <a href="{{path('app_accueil')}}">L'Homo sapiens</a>
+                            <a href="{{path('app_accueil')}}">Au seuil de la civilisation</a>
+                        </div>
+                    </div> 
+                </li>
+                <li class="list_li">
+                    <div class="deroulant">
+                        <div class="link">Les civilisations</div>
+                        <div class="deroulant_content">
+                            <a href="{{path('app_accueil')}}">Les premières traces de la civilisation</a>
+                            <a href="{{path('app_accueil')}}">La mésopotamie ancienne</a>
+                            <a href="{{path('app_accueil')}}">L'Egypte ancienne</a>
+                            <a href="{{path('app_accueil')}}">Intrus et envahisseurs</a>
+                            <a href="{{path('app_accueil')}}">Les commencement de la civilisation en Asie du sud</a>
+                            <a href="{{path('app_accueil')}}">Les autres mondes des Temps anciens</a>
+                            <a href="{{path('app_accueil')}}">Transformations</a>
+                        </div>
+                    </div> 
+                </li>
+                <li class="list_li">
+                    <div class="deroulant">
+                        <div class="link">L'âge classique</div>
+                        <div class="deroulant_content">
+                            <a href="{{path('app_accueil')}}">Rebâtir le monde ancien</a>
+                            <a href="{{path('app_accueil')}}">Les grecs</a>
+                            <a href="{{path('app_accueil')}}">Le monde hellénistique</a>
+                            <a href="{{path('app_accueil')}}">Rome</a>
+                            <a href="{{path('app_accueil')}}">Le christianisme et la transition occidentale</a>
+                            <a href="{{path('app_accueil')}}">L'Inde classique</a>
+                            <a href="{{path('app_accueil')}}">La Chine classic</a>
+                        </div>
+                    </div> 
+                </li>
+                <li class="list_li">
+                    <!-- Use any element to open the sidenav -->
+                    {% if app.user %}
+                        <a href="#" onclick="openNav()">
+                            <div class="avatar">
+                                <img src="{{ app.user.avatar }}" alt="{{ app.user.pseudo }}">
+                                {# <span>{{ app.user.pseudo }}</span> #}
+                            </div>
+                        </a>
+                    {% else %}
+                        <a  class="link" href="#" onclick="openNav()">Se connecter | S'inscrire</a>
+                    {% endif %}
+                </li>
+            <ul>
+        </nav>
 </header>

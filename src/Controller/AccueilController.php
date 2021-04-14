@@ -18,7 +18,7 @@ class AccueilController extends AbstractController
         return $this->render('accueil/index.html.twig', [
             'articles' => $articles->findBy([],['createdAt'=> 'DESC']),
             'categories' => $categoriesRepos->findAll(),
-            'controller_name' => 'Histoire du monde'
+            'controller_name' => 'Accueil',
         ]);
     }
 }

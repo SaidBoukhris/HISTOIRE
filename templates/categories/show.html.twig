@@ -3,23 +3,56 @@
 {% block title %}{{ categories.name }}{% endblock %}
 
 {% block body %}
-<article class="accueil">
-    <h2>{{ categories.name }} </h2>
+<article class="page_les_categories">
+    <h2>{{ categories.name }} ({{ pluralize(categories.articles|length, 'article') }}) </h2>
+    <div class="accueil_aside_cards">
+    {% for article in categories.articles %}
+            <div class="accueil_aside_cards_card_img" style="background-image: url({{asset('assets/images/carte.jpg')}});">
+                <h4 class="accueil_aside_cards_card_title">{{ article.title }}</h4> 
+            </div>
+                <div class="accueil_aside_cards_card_body_article">
+                    {# {% for article in category.articles %}
+                        <a  class="accueil_aside_cards_card_body_article_link" href="{{ path('app_articles_show', {'slug': article.slug}) }}">{{ article.title }}</a>
+                        <p class="accueil_aside_cards_card_body_article_like">{{ article.likes }} j'aime | {{ article.dislikes }} j'aimes pas</p>
+
+                    {% else %}
+                        <p class="accueil_aside_cards_card_body_article_0">
+                        Aucun article dans cette catégorie
+                    </p>
+                    {% endfor %} #}
+                </div>
+        {% else %}
+            
+    {% endfor %}
+    </div>
 </article>
 
 <aside class="accueil_aside">
-    <a href="{{ path('admin_categories_accueil') }}">Retour</a>
+    <a href="{{ path('app_categories_index') }}">Retour</a>
     <a href="{{ path('admin_categories_edit', {'id': categories.id}) }}">Modifier</a>
-    <h2>Les derniers articles</h2>
-    <div class="cards">
-        <div class="card">
-            <div class="card_img"  style="background-image: url({{asset('assets/images/ebih-il-mesopotamie-histoire.jpg')}});">
-                <h4 class="card_title"><b>10 000 ans avant Jésus-Christ</b></h4> 
+    <div class="page_les_categories_cards">
+        {% for category in categories %}
+        <a href="{{ path('app_categories_show', {'slug': category.slug}) }}">
+            <div class="page_les_categories_card">
+                <div class="page_les_categories_card_img" style="background-image: url({{asset('assets/images/carte.jpg')}});">
+                    <h4 class="page_les_categories_card_title"><b>{{ category.name }}</b></h4> 
+                </div>
+                <div class="page_les_categories_card_body">
+                    <span class="page_les_categories_card_articles_title">
+                        {% for articles in category.articles %}
+                        {{ articles.title }}
+                        {% else %}
+                            Aucun article dans cette catégorie
+                        {% endfor %}
+                    </span> 
+                </div>
             </div>
-            <div class="card_body">
-            <p>Cette période de l’histoire se termine en 476 ans après Jésus-Christ lorsque l’Empire Romain chute.</p> 
-            </div>
-        </div>
+        {% else %}
+            <p>Aucune catégorie en ce moment<a href="{{ path('admin_categories_add') }}">
+            Ajouter une catégorie <span>&#8594;</span></a></p>
+        </a>
+        {% endfor %}
     </div>
+
 </aside>
 {% endblock %}
